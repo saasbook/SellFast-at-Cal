@@ -7,10 +7,13 @@
       %th Item
       %th Seller
       %th Item Description
+      %th Item Details
   %tbody
     - @items.each do |item|
       %tr
         %td= item.name
         %td= item.user_selling
         %td= item.description
+        %td= link_to "More about #{item.name}", item_path(item)
 
+= link_to 'Add new item', new_item_path
