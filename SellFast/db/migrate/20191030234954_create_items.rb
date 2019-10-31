@@ -7,9 +7,11 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.float :current_price
       t.float :buy_it_now
       t.datetime :time_listed
-      add_foreign_key :items, :users, column: :user_selling
-      add_foreign_key :items, :users, column: :highest_bidder
+      t.integer :user_selling
+      t.integer :highest_bidder
       t.timestamps
     end
+    add_foreign_key :items, :users, column: :user_selling
+    add_foreign_key :items, :users, column: :highest_bidder
   end
 end
