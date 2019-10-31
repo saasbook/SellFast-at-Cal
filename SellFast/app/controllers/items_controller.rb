@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Items.all
+    @items = Item.all
   end
 
   def new
@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
   end
   
   def create
-    @item = Items.new(item_params)
+    @item = Item.new(item_params)
     @item.status = :BIDDING
     @items.time_listed = DateTime.now
     @item.user_selling = session[:id]
