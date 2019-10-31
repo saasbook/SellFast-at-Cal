@@ -1,0 +1,16 @@
+-#  This file is app/views/movies/index.html.haml
+%h2 Marketplace
+
+%table#movies.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th Item
+      %th Seller
+      %th Item Description
+  %tbody
+    - @items.each do |item|
+      %tr
+        %td= item.name
+        %td= item.user_selling
+        %td= item.description
+
