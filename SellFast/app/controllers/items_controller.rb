@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def item_params
-    params.require(:item).permit(:name, :description)
+    params.require(:item).permit(:name, :description, :current_price)
   end
 
   def index
@@ -15,10 +15,10 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.status = :BIDDING
-    @items.time_listed = DateTime.now
+    @item.time_listed = DateTime.now
     @item.user_selling = session[:id]
     @item.save
-    @item
+    redirect_to item_path(@item)
   end
 
   def show
@@ -38,6 +38,10 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    flash[:notice] = "Item '#{@item.name}' deleted."
+    redirect_to items_path
   end
 
 end

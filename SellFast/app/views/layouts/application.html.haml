@@ -8,9 +8,10 @@
     = csrf_meta_tags
 
     %body
-      %div.container
-        %div.navbar.navbar-expand-lg.bg-primary.text-white
-          %h1.title Sell-Fast
+      %div.container-fullwidth
+        %div.navbar.navbar-expand-lg.bg-primary.text-light
+          %h1{:class => 'w-100'} Sell-Fast
+          %h3.title Login
         #main
           - if flash[:notice]
             %div.alert.alert-danger

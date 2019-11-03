@@ -14,7 +14,7 @@
 		= @item.buy_it_now
 	%li
 		Time listed:
-		-# = @item.time_listed.strftime("%l %p: &M, %B %d, %Y")
+		= @item.time_listed.strftime("%l %p: &M, %B %d, %Y")
 	%li
 		User selling this item:
 		= @item.user_selling

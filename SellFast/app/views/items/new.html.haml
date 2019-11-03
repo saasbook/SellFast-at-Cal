@@ -1,0 +1,15 @@
+%h2 Create Item to Sell!
+
+= form_tag items_path do
+
+  = label :item, :name, 'Item Name'
+  = text_field :item, 'name'
+
+  = label :item, :description, 'Item Description'
+  = text_field :item, 'description'
+
+  = label :item, :current_price, 'Starting Bid'
+  = number_field :item, 'current_price', :step => '0.01'
+
+
+  = submit_tag 'Save Changes', :class => 'btn btn-primary'
