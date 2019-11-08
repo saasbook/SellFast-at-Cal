@@ -1,2 +1,0 @@
-class UserOrdersController < ApplicationController
-end

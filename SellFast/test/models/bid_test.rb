@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OrderItemsControllerTest < ActionDispatch::IntegrationTest
+class BidTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

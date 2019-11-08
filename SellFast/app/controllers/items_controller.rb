@@ -13,11 +13,10 @@ class ItemsController < ApplicationController
   end
   
   def create
-    @item = Item.new(item_params)
+    @item = Item.create!(item_params)
     @item.status = :BIDDING
     @item.time_listed = DateTime.now
-    @item.user_selling = session[:id]
-    @item.save
+    #@item.seller_id = session[:id]
     redirect_to item_path(@item)
   end
 

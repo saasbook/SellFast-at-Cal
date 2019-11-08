@@ -1,2 +1,0 @@
-class UserOrder < ApplicationRecord
-end

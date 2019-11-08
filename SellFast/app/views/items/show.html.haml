@@ -9,18 +9,10 @@
 	%li
 		Current Price:
 		= @item.current_price
-	%li
-		Buy It Now Price:
-		= @item.buy_it_now
-	%li
-		Time listed:
-		= @item.time_listed.strftime("%l %p: &M, %B %d, %Y")
+	
 	%li
 		User selling this item:
-		= @item.user_selling
-	%li
-		Highest bidder:
-		= @item.highest_bidder
+		= @item.seller_id
 
 %h4 Description:
 
