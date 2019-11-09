@@ -9,7 +9,8 @@
     <div class="container-fullwidth">
       <div class="navbar.navbar-expand-lg.bg-primary.text-light">
         <h1 class='w-100'>Sell-Fast</h1>
-        <h3 title="Login or Signup">Login</h3>
+        <p><%= link_to "Log in", new_session_path(:user) %></p>
+        <p><%= link_to "Log out", destroy_session_path(:user) %></p>
       </div>
     </div>
     <div class="container">
