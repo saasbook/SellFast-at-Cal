@@ -1,8 +1,9 @@
 <h1> Marketplace </h1>
 
-<table class="table bg-light">
+<table class="table">
   <thead>
       <tr>
+          <th scope="col"></th>
           <th scope="col">Item Name</th>
           <th scope="col">Item Description</th>
           <th scope="col">Price to Beat</th>
@@ -11,11 +12,11 @@
   <tbody>
     <% for item in @items do%>
     <tr>
-      <td><%= link_to item.name, item_path(item), :class=>"btn btn-primary" %></td>
+      <td><%= item.name %></td>
       <td><%= item.description %></td>
-      <td>$<%= item.current_price %></td>
+      <td><%= item.current_price %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Add new item', new_item_path %>
+<%= link_to 'Add new item', items_path %>
