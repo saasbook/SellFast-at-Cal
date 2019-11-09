@@ -6,6 +6,10 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :description, :current_price)
   end
 
+  def item_params
+    params.require(:item).permit(:name, :description, :current_price)
+  end
+
   def index
     @items = Item.all
   end
@@ -16,10 +20,9 @@ class ItemsController < ApplicationController
   end
   
   def create
-    @item = Item.create!(item_params)
-    @item.status = :BIDDING
+    @item = current_user.items.new(item_params)
     @item.time_listed = DateTime.now
-    #@item.seller_id = session[:id]
+    @item.save!
     redirect_to item_path(@item)
   end
 
