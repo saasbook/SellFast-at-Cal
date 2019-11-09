@@ -1,9 +1,8 @@
 <h1> Marketplace </h1>
 
-<table class="table">
+<table class="table bg-light">
   <thead>
       <tr>
-          <th scope="col"></th>
           <th scope="col">Item Name</th>
           <th scope="col">Item Description</th>
           <th scope="col">Price to Beat</th>
@@ -12,7 +11,7 @@
   <tbody>
     <% for item in @items do%>
     <tr>
-      <td><%= item.name %></td>
+      <td><%= link_to item.name, item_path(item) %></td>
       <td><%= item.description %></td>
       <td><%= item.current_price %></td>
     </tr>
