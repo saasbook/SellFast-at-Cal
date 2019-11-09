@@ -2,13 +2,13 @@
 <p> Username: <%= @user.username %> </p>
 <p> Email address: <%= @user.email%> </p>
 <p> List of bids: 
-    <% for bid in @user.bids do %>
-        <p> <%= bid.item.name %> </p>
+    <% for bid in @bids do %>
+        <p> - <%= bid.item.name %> </p>
     <% end %>
 </p>
 
 <p> Items being sold:
-    <% for item in @user.items do %>
-        <p> <%= link_to item.name, item_path(item) %> </p>
+    <% for item in @items do %>
+        <p> - <%= link_to item.name, item_path(item) %> </p>
     <% end %>
 </p>
