@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+  skip_before_action :authenticate!, :only =>[:index]
+
   def item_params
     params.require(:item).permit(:name, :description, :current_price)
   end
