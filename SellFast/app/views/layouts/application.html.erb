@@ -10,20 +10,24 @@
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <%= link_to 'Sell-Fast', items_path, :class => 'btn btn-warning' %>
+                  <%= link_to items_path, :class => 'btn btn-outline-warning' do %>
+                    <h2> Sell-Fast </h2>
+                  <% end %>
                 </li>
             </ul>
         </div>
         <% if user_signed_in? %>
           <div class="mx-auto order-0">
-            <%= link_to account_path do %>
-              <h3> Hello <%= current_user.username %> </h3>
+            <%= link_to account_path, :class => 'btn btn-info' do %>
+              <h4> Hello <%= current_user.username %> </h4>
             <% end %>
           </div>  
           <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <%= link_to "Log out", destroy_user_session_path, :class => 'btn btn-warning' %>
+                    <%= link_to destroy_user_session_path, :class => 'btn btn-outline-warning' do %>
+                      </h2> Log Out </h2>
+                    <% end %>
                 </li>
             </ul>
           </div>
@@ -31,7 +35,9 @@
           <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <%= button_to "Login", new_session_path(:user), :class => 'btn btn-warning' %>
+                <%= link_to new_session_path(:user), :class => 'btn btn-warning' do %>
+                  </h2> Log in </h2>
+                <% end %>
               </li>
             </ul>
           </div>
