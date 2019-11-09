@@ -1,1 +1,14 @@
-Welcome to your account
+<h2 class="text-center"> Profile Information </h2>
+<p> Username: <%= @user.username %> </p>
+<p> Email address: <%= @user.email%> </p>
+<p> List of bids: 
+    <% for bid in @bids do %>
+        <p> - <%= bid.item.name %> </p>
+    <% end %>
+</p>
+
+<p> Items being sold:
+    <% for item in @items do %>
+        <p> - <%= link_to item.name, item_path(item) %> </p>
+    <% end %>
+</p>
