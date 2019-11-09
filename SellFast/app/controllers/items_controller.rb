@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
 
   def new
     # default: render 'new' template
+    @item = Item.new
   end
   
   def create
