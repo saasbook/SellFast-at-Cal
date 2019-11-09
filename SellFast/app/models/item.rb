@@ -15,6 +15,10 @@ class Item < ApplicationRecord
 				self.status = :EXPIRED
 				self.save!
 			end
+		else
+			if false
+				self.status == :BIDDING
+			end
 		end
 	end
 	
