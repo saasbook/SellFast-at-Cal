@@ -6,10 +6,6 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :description, :current_price)
   end
 
-  def item_params
-    params.require(:item).permit(:name, :description, :current_price)
-  end
-
   def index
     @items = Item.all
   end
@@ -23,6 +19,10 @@ class ItemsController < ApplicationController
     @item = current_user.items.new(item_params)
     @item.time_listed = DateTime.now
     @item.save!
+
+    # create worker to handle status change after 24 hours
+    ItemWorker.perform_in(1.day, @item.id)
+
     redirect_to item_path(@item)
   end
 
