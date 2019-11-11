@@ -5,10 +5,33 @@
 <p class="ml-5"> $<%= @item.current_price %> </p>
 <h4> Status: <%= @item.status %> </h4>
 <h4> Time Listed: <%= @item.time_listed %> </h4>
-<h4> List of bids: 
-    <% for bid in @bids do %>
-        <p> - <%= bid.amount %> </p>
-    <% end %>
-</h4>
+<div class='card bg-light'> 
+  <h5 class="card-header text-white bg-info"> List of bids: </h5>
+    <div class="card-body">
+      <% for bid in @bids do %>
+          <p>  $<%= bid.amount %> </p>
+      <% end %>
+    </div>
+</div>
 
-<%= link_to 'Bid', new_item_bid_path(@item.id), :class=>'btn btn-info' %>
+<% if user_signed_in? %>
+  <div class="card bg-light">
+    <h5 class="card-header text-white bg-info">
+      Place a Bid
+    </h5>
+    <div class="card-body">
+      <%= form_with model: Bid.new, url: item_bids_path(@item.id), method: :post do |f| %>
+
+        <div class="field">
+          <h5 class="card-title"> <%= f.label :amount, "Price:" %><br /> </h5>
+          <%= f.number_field :amount, autofocus: true, autocomplete: "Item name", step: 0.01 %>
+        </div>
+
+      <%= f.submit "Bid!"%>
+
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <h4> Sign in to bid </h4>
+<% end %>
