@@ -6,10 +6,6 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :description, :current_price)
   end
 
-  def item_params
-    params.require(:item).permit(:name, :description, :current_price)
-  end
-
   def index
     @items = Item.all
   end
@@ -29,6 +25,7 @@ class ItemsController < ApplicationController
   def show
     id = params[:id]
     @item = Item.find(id)
+    @bids = @item.bids
   end
 
   def edit

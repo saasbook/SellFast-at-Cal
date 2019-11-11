@@ -5,3 +5,10 @@
 <p class="ml-5"> $<%= @item.current_price %> </p>
 <h4> Status: <%= @item.status %> </h4>
 <h4> Time Listed: <%= @item.time_listed %> </h4>
+<h4> List of bids: 
+    <% for bid in @bids do %>
+        <p> - <%= bid.amount %> </p>
+    <% end %>
+</h4>
+
+<%= link_to 'Bid', new_item_bid_path(@item.id), :class=>'btn btn-info' %>
