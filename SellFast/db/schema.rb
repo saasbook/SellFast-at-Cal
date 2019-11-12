@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2019_11_07_030441) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bids", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "bidder_id"
+    t.bigint "item_id"
+    t.bigint "bidder_id"
     t.float "amount"
     t.datetime "time_bidded"
     t.datetime "created_at", precision: 6, null: false
@@ -30,11 +33,28 @@ ActiveRecord::Schema.define(version: 2019_11_07_030441) do
     t.float "current_price"
     t.float "purchase_price"
     t.datetime "time_listed"
-    t.integer "seller_id"
-    t.integer "highest_bidder"
+    t.bigint "seller_id"
+    t.bigint "highest_bidder_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["highest_bidder_id"], name: "index_items_on_highest_bidder_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "status", default: "PENDING_ACTION"
+    t.bigint "item_id"
+    t.bigint "seller_id"
+    t.bigint "buyer_id"
+    t.float "amount"
+    t.datetime "time_sold"
+    t.datetime "transaction_time"
+    t.string "transaction_location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_orders_on_buyer_id"
+    t.index ["item_id"], name: "index_orders_on_item_id"
+    t.index ["seller_id"], name: "index_orders_on_seller_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,5 +73,9 @@ ActiveRecord::Schema.define(version: 2019_11_07_030441) do
 
   add_foreign_key "bids", "items"
   add_foreign_key "bids", "users", column: "bidder_id"
+  add_foreign_key "items", "users", column: "highest_bidder_id"
   add_foreign_key "items", "users", column: "seller_id"
+  add_foreign_key "orders", "items"
+  add_foreign_key "orders", "users", column: "buyer_id"
+  add_foreign_key "orders", "users", column: "seller_id"
 end

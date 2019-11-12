@@ -1,0 +1,15 @@
+<h1 class="text-center"> Order number: <%= @order.id %></h1>
+<h2> Order status: </h2>
+<p class="ml-5"> <%= @order.status%> </p>
+<h2> Item in order: </h2>
+<p class="ml-5"> <%= @order.item.name%> </p>
+<h2> Seller </h2>
+<p class="ml-5"> $<%= @order.seller.username %> </p>
+<h2> Buyer </h2>
+<p class="ml-5"> $<%= @order.buyer.username %> </p>
+<h2> Transaction amount </h2>
+<p class="ml-5"> $<%= @order.amount %> </p>
+<h2> Transaction time </h2>
+<p class="ml-5"> $<%= @order.transaction_time %> </p>
+<h2> Transaction location </h2>
+<p class="ml-5"> $<%= @order.transaction_location %> </p>

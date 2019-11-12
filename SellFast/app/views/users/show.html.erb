@@ -12,3 +12,15 @@
         <p> - <%= link_to item.name, item_path(item) %> </p>
     <% end %>
 </p>
+
+<p> Buy orders: 
+    <% for buy_order in @buy_orders do %>
+        <p> - <%= buy_order.item.name %> </p>
+    <% end %>
+</p>
+
+<p> Sell orders: 
+    <% for sell_order in @sell_orders do %>
+        <p> - <%= sell_order.item.name %> </p>
+    <% end %>
+</p>

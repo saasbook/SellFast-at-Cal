@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # application related user logic
   get 'user/account', to: 'users#show', as: 'account'
 
+  # show details for specified order
+  get 'order/:id', to: 'orders#show', as: 'order'
+
   resources :items
   resources :bids
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -50,7 +50,7 @@ class CreateMarketplace < ActiveRecord::Migration[6.0]
       t.float :purchase_price
       t.datetime :time_listed
       t.references :seller, foreign_key: {to_table: :users}
-      t.integer :highest_bidder
+      t.references :highest_bidder, foreign_key: {to_table: :users}
       t.timestamps
     end
 
@@ -59,6 +59,18 @@ class CreateMarketplace < ActiveRecord::Migration[6.0]
       t.references :bidder, foreign_key: {to_table: :users}
       t.float :amount
       t.datetime :time_bidded
+      t.timestamps
+    end
+
+    create_table :orders do |t|
+      t.string :status, :default => :PENDING_ACTION
+      t.references :item, foreign_key: {to_table: :items}
+      t.references :seller, foreign_key: {to_table: :users}
+      t.references :buyer, foreign_key: {to_table: :users}
+      t.float :amount
+      t.datetime :time_sold
+      t.datetime :transaction_time
+      t.string :transaction_location
       t.timestamps
     end
   end

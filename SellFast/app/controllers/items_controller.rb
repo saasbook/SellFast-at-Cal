@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
     @item.save!
 
     # create worker to handle status change after 24 hours
-    ItemWorker.perform_in(1.day, @item.id)
+    ItemWorker.perform_in(1.second, @item.id)
 
     redirect_to item_path(@item)
   end
