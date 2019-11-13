@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :bids, :foreign_key => 'bidder'
-  has_many :items, :foreign_key => 'seller'
+  has_many :bids, :foreign_key => 'bidder', dependent: :destroy
+  has_many :items, :foreign_key => 'seller', dependent: :destroy
 end
