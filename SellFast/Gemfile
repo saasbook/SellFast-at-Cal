@@ -61,3 +61,4 @@ gem 'sidekiq'
 gem 'pg'
 gem 'execjs'
 gem 'therubyracer'
+gem "image_processing", "~> 1.0"

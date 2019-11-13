@@ -11,6 +11,9 @@ RUN apt-get update && apt-get install -qq -y --no-install-recommends \
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get update && apt-get install -qq -y --no-install-recommends nodejs yarn
 
+# install imagemagick
+RUN apt-get install -y imagemagick
+
 RUN yarn install --check-files
 RUN yarn check --integrity
 

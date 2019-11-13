@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   # application related user logic
   get 'user/account', to: 'users#show', as: 'account'
+  get 'user/account/edit', to: 'users#edit', as: 'edit_account'
+  post 'user/account/update', to:'users#update', as: 'user'
 
   # show details for specified order
   get 'order/:id', to: 'orders#show', as: 'order'
