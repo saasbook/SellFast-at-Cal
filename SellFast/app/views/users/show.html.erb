@@ -15,12 +15,12 @@
 
 <p> Buy orders: 
     <% for buy_order in @buy_orders do %>
-        <p> - <%= buy_order.item.name %> </p>
+        <p> - <%= link_to Item.find_by_id(buy_order.item_id).name, order_path(buy_order) %> </p>
     <% end %>
 </p>
 
 <p> Sell orders: 
     <% for sell_order in @sell_orders do %>
-        <p> - <%= sell_order.item.name %> </p>
+        <p> - <%= link_to Item.find_by_id(sell_order.item_id).name, order_path(sell_order) %> </p>
     <% end %>
 </p>

@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @items = Item.where(status: :BIDDING)
   end
 
   def new
@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
     @item.save!
 
     # create worker to handle status change after 24 hours
-    ItemWorker.perform_in(1.second, @item.id)
+    ItemWorker.perform_in(15.second, @item.id)
 
     redirect_to item_path(@item)
   end
@@ -29,6 +29,7 @@ class ItemsController < ApplicationController
   def show
     id = params[:id]
     @item = Item.find(id)
+    @bids = @item.bids
   end
 
   def edit

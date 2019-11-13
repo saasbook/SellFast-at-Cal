@@ -2,14 +2,14 @@
 <h2> Order status: </h2>
 <p class="ml-5"> <%= @order.status%> </p>
 <h2> Item in order: </h2>
-<p class="ml-5"> <%= @order.item.name%> </p>
+<p class="ml-5"> <%= link_to Item.find_by_id(@order.item_id).name, item_path(@order.item_id) %> </p>
 <h2> Seller </h2>
-<p class="ml-5"> $<%= @order.seller.username %> </p>
+<p class="ml-5"> <%= User.find_by_id(@order.seller_id).username %> </p>
 <h2> Buyer </h2>
-<p class="ml-5"> $<%= @order.buyer.username %> </p>
+<p class="ml-5"> <%= User.find_by_id(@order.buyer_id).username %> </p>
 <h2> Transaction amount </h2>
 <p class="ml-5"> $<%= @order.amount %> </p>
 <h2> Transaction time </h2>
-<p class="ml-5"> $<%= @order.transaction_time %> </p>
+<p class="ml-5"> <%= @order.transaction_time %> </p>
 <h2> Transaction location </h2>
-<p class="ml-5"> $<%= @order.transaction_location %> </p>
+<p class="ml-5"> <%= @order.transaction_location %> </p>
