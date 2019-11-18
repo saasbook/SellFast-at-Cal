@@ -1,6 +1,8 @@
 <h2 class="text-center"> Profile Information </h2>
 <% if current_user.avatar.attached? %>
-  <%= image_tag current_user.avatar.variant(resize_to_fit: [400, 400]) %>
+  <%= image_tag current_user.avatar.variant(resize_to_fit: [400, 400]), class: "mx-auto d-block" %>
+<% else %>
+  <%= image_tag "avatar_placeholder.png", {:style => "height:400px;width:400px;", :class=>"mx-auto d-block"} %>
 <% end %>
 
 <p> Username: <%= @user.username %> </p>

@@ -1,4 +1,11 @@
 <h1 class="text-center"><%= @item.name %></h1>
+
+<% if @item.images.attached? %>
+  <% for image in @item.images do %>
+    <%= image_tag image.variant(resize_to_fit: [300, 300]), class: "mx-auto d-block" %>
+  <% end %>
+<% end %>
+
 <h2> Description: </h2>
 <p class="ml-5"> <%= @item.description%> </p>
 <h2> Price to Beat </h2>

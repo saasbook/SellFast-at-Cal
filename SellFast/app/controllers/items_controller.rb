@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :current_price)
+    params.require(:item).permit(:name, :description, :current_price, images: [])
   end
 
   def index
@@ -49,7 +49,12 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item.update_attributes!(item_params)
+    if not item_params[:images].nil?
+      for image in item_params[:images] do
+        @item.images.attach(image)
+      end
+    end
+    @item.update(item_params.except(:images))
     flash[:info] = "#{@item.name} was successfully updated."
     redirect_to item_path(@item)
   end
@@ -59,6 +64,13 @@ class ItemsController < ApplicationController
     @item.destroy
     flash[:info] = "Item '#{@item.name}' deleted."
     redirect_to items_path
+  end
+
+  def delete_item_image
+    @item = Item.find(params[:item_id])
+    @image = ActiveStorage::Blob.find_signed(params[:image_id])
+    ActiveStorage::Attachment.find(@image.id).purge
+    redirect_to item_path(@item)
   end
 
 end
