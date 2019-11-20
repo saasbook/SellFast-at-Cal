@@ -26,5 +26,3 @@ RUN gem install bundler -v 2.0.2
 RUN bundle install
 RUN bundle update --bundler
 COPY . /SellFast
-
-EXPOSE 3000
