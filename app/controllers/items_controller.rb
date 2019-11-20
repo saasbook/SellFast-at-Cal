@@ -28,12 +28,19 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.new(item_params)
     @item.time_listed = DateTime.now
-    @item.save!
 
-    # create worker to handle status change after 24 hours
-    ItemWorker.perform_in(1.day, @item.id)
+    if @item.valid?
+      @item.save!
 
-    redirect_to item_path(@item)
+      # create worker to handle status change after 24 hours
+      ItemWorker.perform_in(1.day, @item.id)
+
+      flash[:info] = "Item created"
+      redirect_to item_path(@item)
+    else
+      flash[:danger] = "Invalid parameters"
+      redirect_to new_item_path()
+    end
   end
 
   def show
