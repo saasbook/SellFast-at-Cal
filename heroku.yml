@@ -1,0 +1,13 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+    as: postgres
+
+    - plan: heroku-redis
+    as: redis
+
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: rails server -b 0.0.0.0 -p 3000
