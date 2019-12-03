@@ -3,9 +3,6 @@ class CreateMarketplace < ActiveRecord::Migration[6.0]
     create_table :users do |t|
       t.string :username,           null: false, default: ""
 
-      # payment related
-      t.string :stripe_token
-
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

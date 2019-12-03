@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_13_093204) do
+ActiveRecord::Schema.define(version: 2019_12_02_024400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,8 +62,18 @@ ActiveRecord::Schema.define(version: 2019_11_13_093204) do
     t.index ["seller_id"], name: "index_items_on_seller_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "status", default: "UNREAD"
+    t.bigint "user_id"
+    t.datetime "time_created"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "orders", force: :cascade do |t|
-    t.string "status", default: "PENDING_METHOD"
+    t.string "status", default: "ONLINE_PENDING_PAYMENT"
     t.bigint "item_id"
     t.bigint "seller_id"
     t.bigint "buyer_id"
@@ -103,6 +113,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_093204) do
   add_foreign_key "bids", "users", column: "bidder_id"
   add_foreign_key "items", "users", column: "highest_bidder_id"
   add_foreign_key "items", "users", column: "seller_id"
+  add_foreign_key "notifications", "users"
   add_foreign_key "orders", "items"
   add_foreign_key "orders", "users", column: "buyer_id"
   add_foreign_key "orders", "users", column: "seller_id"

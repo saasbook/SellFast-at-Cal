@@ -70,4 +70,4 @@ gem 'execjs'
 gem 'mini_racer'
 gem "image_processing", "~> 1.0"
 gem 'search_flip'
-gem 'stripe-rails'
+gem 'paypal-checkout-sdk'

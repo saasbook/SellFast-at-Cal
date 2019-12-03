@@ -79,10 +79,6 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  # stripe config
-  config.stripe.secret_key = Rails.application.credentials[ENV['RAILS_ENV']][:stripe][:STRIPE_SK]
-  config.stripe.publishable_key = Rails.application.credentials[ENV['RAILS_ENV']][:stripe][:STRIPE_PK]
-
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true

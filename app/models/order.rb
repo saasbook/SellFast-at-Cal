@@ -2,7 +2,8 @@ class Order < ApplicationRecord
     validates :seller_id, :buyer_id, :status, :amount, :item_id, presence: true
 
 	def self.all_status
-		%w(:PENDING_METHOD, 
+		%w(:PENDING_SELLER_METHOD, 
+			:PENDING_BUYER_METHOD,
 			:ONLINE_PENDING_PAYMENT, 
 			:ONLINE_PENDING_DELIVERY,
 			:ONLINE_CONFIRMED_DELIVERY,
