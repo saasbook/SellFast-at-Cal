@@ -1,6 +1,12 @@
 <h1> Marketplace </h1>
+<div class="item_bar">
+  
+  <span> <%= link_to 'Add new item', new_item_path %> </span>
 
-<%= link_to 'Add new item', new_item_path %>
+  <span>
+    <%= sort_link @search, :current_price, "Price", :class=>'btn' %>
+  </span>
+</div>
 
 <% @items.in_groups_of(4, false).each do |group| %>
   <div class='row'>
