@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   # show details for specified order
   get 'order/:id', to: 'orders#show', as: 'order'
 
+  # payment page
+  get 'order/:id/payment', to: 'orders#payment', as: 'payment'
+  # routes for handling stripe checkout
+  resources :charges, only: [:new, :create]
+
   resources :items do
     resources :bids
   end

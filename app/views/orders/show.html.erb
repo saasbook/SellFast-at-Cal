@@ -13,3 +13,7 @@
 <p class="ml-5"> <%= @order.transaction_time %> </p>
 <h2> Transaction location </h2>
 <p class="ml-5"> <%= @order.transaction_location %> </p>
+
+<% if @is_buyer %>
+  <%= button_to "Proceed to payment", payment_path(@order.id), :method => "get", :class=>'btn btn-info' %>
+<% end %>

@@ -1,9 +1,7 @@
-sidekiq_config = { url: ENV['REDIS_URL'] }
-
 Sidekiq.configure_server do |config|
-  config.redis = sidekiq_config
+  config.redis = { url: ENV.fetch('REDIS_URL', 'redis://localhost:6379/0') }
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = sidekiq_config
+  config.redis = { url: ENV.fetch('REDIS_URL', 'redis://localhost:6379/0') }
 end

@@ -44,10 +44,14 @@ Rails.application.configure do
     domain: "gmail.com",
     port: 587,
     user_name: "sellfast.cal@gmail.com",
-    password: "Reallyreallyfast",
+    password: "Reallyreallyfast!!",
     authentication: 'plain',
     :enable_starttls_auto => true
   }
+
+  # stripe config
+  config.stripe.secret_key = "sk_test_tiDib1rcMeZmgb7ModxPq2bR00r0uom8NS"
+  config.stripe.publishable_key = "pk_test_XQNFHEP4Y9AVSeQsZfVWskZ7004fyWERfS"
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

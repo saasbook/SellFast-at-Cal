@@ -33,7 +33,8 @@ class ItemsController < ApplicationController
       @item.save!
 
       # create worker to handle status change after 24 hours
-      ItemWorker.perform_in(1.day, @item.id)
+      # ItemWorker.perform_in(1.day, @item.id)
+      ItemWorker.perform_in(15.seconds, @item.id)
 
       flash[:info] = "Item created"
       redirect_to item_path(@item)

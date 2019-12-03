@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_093204) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "status", default: "PENDING_ACTION"
+    t.string "status", default: "PENDING_METHOD"
     t.bigint "item_id"
     t.bigint "seller_id"
     t.bigint "buyer_id"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_093204) do
 
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
+    t.string "stripe_token"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
