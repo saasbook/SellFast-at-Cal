@@ -95,10 +95,12 @@ class OrdersController < ApplicationController
 		end
 
 		# send job to payout worker to pay seller
-		PayoutWorker.perform_async()
+		PayoutWorker.perform_async(@order.seller_id, @order.id ,@order.amount)
 
 		@order.status = "COMPLETED"
 		@order.save!
+
+		redirect_to order_path(@order.id)
 	end
 
 end

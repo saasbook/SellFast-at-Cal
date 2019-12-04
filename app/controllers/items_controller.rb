@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 
   skip_before_action :authenticate!, :only =>[:index]
   before_action :check_ownership, :only =>[:update, :edit, :destroy]
+  before_action :check_payment_info_exist, :only =>[:new]
 
   # check ownership before edit or delete
   def check_ownership
@@ -9,6 +10,13 @@ class ItemsController < ApplicationController
     if @item.seller_id != current_user.id
       flash[:danger] = "This item does not belong to you"
       redirect_to item_path(@item)
+    end
+  end
+
+  def check_payment_info_exist
+    if current_user.venmo_phone_number == nil and current_user.paypal_email == nil
+      flash[:danger] = "You need to set up payment method to become a seller"
+      redirect_to edit_account_path
     end
   end
 

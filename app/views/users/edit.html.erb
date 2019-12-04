@@ -5,6 +5,13 @@
   <div class="field">
 		<%= f.label "Profile Photo" %>
 		<%= f.file_field :avatar %>
+
+		Payment methods:
+		<%= f.label "Paypal account email" %>
+		<%= f.text_field :paypal_email %>
+		or
+		<%= f.label "Venmo phone number" %>
+		<%= f.number_field :venmo_phone_number %>
 	</div>
 
   <%= f.submit "Update profile" %>

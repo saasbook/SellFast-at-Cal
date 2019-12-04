@@ -3,6 +3,10 @@ class CreateMarketplace < ActiveRecord::Migration[6.0]
     create_table :users do |t|
       t.string :username,           null: false, default: ""
 
+      # Payments info for seller
+      t.string :paypal_email
+      t.string :venmo_phone_number
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
