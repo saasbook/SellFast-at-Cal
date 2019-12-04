@@ -75,7 +75,7 @@ class PayoutWorker
 	def get_api_access_token
 		uri = URI.parse(@@paypal_access_token_url)
 		request = Net::HTTP::Post.new(uri)
-		request.basic_auth("ASv3RRakkgFHKgtF7wj03AIiXz6BFoDOOPR9r1eDQYxQDm9q_QeYf3ix18rof_0k04j5RyjwVsAKXuav", "EH02lTCvZtfUAJztvDQqljn6pxiGHumftM11EkDsfL6XoHrTIGinc9idhWRpE6fP4cQuYkK2iWCifzc3")
+		request.basic_auth(ENV.fetch("PAYPAL_CLIENT_ID"), ENV.fetch("PAYPAL_CLIENT_SECRET"))
 		request["Accept"] = "application/json"
 		request["Accept-Language"] = "en_US"
 		request.set_form_data(
