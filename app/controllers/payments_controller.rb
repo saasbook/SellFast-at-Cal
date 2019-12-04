@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
 	def payment_completed
 		order_id = params[:orderID]
     request = OrdersGetRequest::new(order_id)
-		response = PayPalClient::client::execute(request)
+		response = PaypalClient::client::execute(request)
 
 		# put receipt info in hash
 		@receipt_info = {

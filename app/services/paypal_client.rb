@@ -1,6 +1,6 @@
 require 'paypal-checkout-sdk'
 
-module PayPalClient
+module PaypalClient
 	class << self
 		
 		def environment
