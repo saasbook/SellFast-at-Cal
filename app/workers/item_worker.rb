@@ -20,7 +20,7 @@ class ItemWorker
 		@order.seller_id = item.seller_id
 		@order.buyer_id = item.highest_bidder_id
 		@order.amount = item.current_price
-		@order.status = :PENDING_ACTION
+		@order.status = :ONLINE_PENDING_PAYMENT
 		@order.time_sold = DateTime.now
 		@order.save!
 	end
