@@ -70,11 +70,6 @@ class PayoutWorker
 			http.request(request)
 		end
 
-		# debug
-		puts api_access_token
-		puts @user.paypal_email
-		puts response
-
 	end
 
 	def get_api_access_token
@@ -94,10 +89,6 @@ class PayoutWorker
 		response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
 			http.request(request)
 		end
-
-		# debug
-		puts response.body
-		puts response.body.class.name
 
 		return JSON.parse(response.body)["access_token"]
 	end

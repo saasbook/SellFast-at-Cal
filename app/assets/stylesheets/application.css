@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+.nav-search {
+    display: block;
+    position: relative;
+    border-radius: 4px 4px 4px 4px;
+    width: 100%;
+}

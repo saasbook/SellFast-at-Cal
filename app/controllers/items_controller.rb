@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   skip_before_action :authenticate!, :only =>[:index]
   before_action :check_ownership, :only =>[:update, :edit, :destroy]
   before_action :check_payment_info_exist, :only =>[:new]
+  before_action :set_search
 
   # check ownership before edit or delete
   def check_ownership
@@ -25,7 +26,10 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.where(status: :BIDDING)
+    
+    @search = Item.where(status: :BIDDING).search(params[:q])
+    @items = @search.result
+   
   end
 
   def new
@@ -42,7 +46,7 @@ class ItemsController < ApplicationController
 
       # create worker to handle status change after 24 hours
       # ItemWorker.perform_in(1.day, @item.id)
-      ItemWorker.perform_in(15.seconds, @item.id)
+      ItemWorker.perform_in(5.minutes, @item.id)
 
       flash[:info] = "Item created"
       redirect_to item_path(@item)
