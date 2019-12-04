@@ -13,3 +13,40 @@
 <p class="ml-5"> <%= @order.transaction_time %> </p>
 <h2> Transaction location </h2>
 <p class="ml-5"> <%= @order.transaction_location %> </p>
+
+
+
+<% if @seller_decide_method %>
+<% end %>
+
+<% if @buyer_pending_method %>
+<% end %>
+
+<% if @seller_pending_method %>
+<% end %>
+
+<% if @buyer_accept_method %>
+<% end %>
+
+<% if @seller_pending_payment %>
+	<p class="ml-5"> Waiting for buyer to pay </p>
+<% end %>
+
+<% if @buyer_pay_online %>
+  <%= button_to "Proceed to payment", payment_path(@order.id), :method => "get", :class=>'btn btn-info' %>
+<% end %>
+
+<% if @location_handshake %>
+<% end %>
+
+<% if @buyer_pending_delivery %>
+	<%= button_to "Confirm order has been successfully delivered", buyer_confirm_delivery_path(@order.id), :method => "get", :class=>'btn btn-info' %>
+<% end %>
+
+<% if @seller_pending_delivery %>
+	<p class="ml-5"> Waiting for buyer to confirm successful delivery </p>
+<% end %>
+
+<% if @completed %>
+	<p class="ml-5"> Order delivered and closed </p>
+<% end %>

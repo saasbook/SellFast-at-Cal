@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
 
   skip_before_action :authenticate!, :only =>[:index]
   before_action :check_ownership, :only =>[:update, :edit, :destroy]
+  before_action :check_payment_info_exist, :only =>[:new]
+  before_action :set_search
 
   # check ownership before edit or delete
   def check_ownership
@@ -12,12 +14,22 @@ class ItemsController < ApplicationController
     end
   end
 
+  def check_payment_info_exist
+    if current_user.venmo_phone_number == nil and current_user.paypal_email == nil
+      flash[:danger] = "You need to set up payment method to become a seller"
+      redirect_to edit_account_path
+    end
+  end
+
   def item_params
     params.require(:item).permit(:name, :description, :current_price, images: [])
   end
 
   def index
-    @items = Item.where(status: :BIDDING)
+    
+    @search = Item.where(status: :BIDDING).search(params[:q])
+    @items = @search.result
+   
   end
 
   def new
@@ -33,7 +45,8 @@ class ItemsController < ApplicationController
       @item.save!
 
       # create worker to handle status change after 24 hours
-      ItemWorker.perform_in(1.day, @item.id)
+      # ItemWorker.perform_in(1.day, @item.id)
+      ItemWorker.perform_in(5.minutes, @item.id)
 
       flash[:info] = "Item created"
       redirect_to item_path(@item)

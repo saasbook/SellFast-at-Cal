@@ -1,0 +1,43 @@
+<body>
+
+	<label class="amount">
+		<span>Amount: $<%= @order.amount %></span>
+	</label>
+
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=ASv3RRakkgFHKgtF7wj03AIiXz6BFoDOOPR9r1eDQYxQDm9q_QeYf3ix18rof_0k04j5RyjwVsAKXuav">
+  </script>
+
+  <div id="paypal-button-container"></div>
+
+	<script>
+		paypal.Buttons({
+			createOrder: function(data, actions) {
+				return actions.order.create({
+					purchase_units: [{
+						amount: {
+							currency_code: "USD", 
+							value: '<%= @order.amount %>'
+						}
+					}]
+				});
+			},
+			onApprove: function(data, actions) {
+				return actions.order.capture().then(function(details) {
+					alert('Transaction completed by ' + details.payer.name.given_name);
+					return fetch('/paypal-transaction-complete', {
+						method: 'post',
+						headers: {
+							'content-type': 'application/json',
+						},
+						body: JSON.stringify({
+							orderID: data.orderID,
+							db_order_id: '<%= @order.id %>'
+						})
+					});
+				});
+			}
+		}).render('#paypal-button-container');
+	</script>
+
+</body>

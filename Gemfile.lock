@@ -144,7 +144,12 @@ GEM
       mini_portile2 (~> 2.4.0)
     oj (3.9.2)
     orm_adapter (0.5.0)
+    paypal-checkout-sdk (1.0.3)
+      paypalhttp (~> 1.0.0)
+    paypalhttp (1.0.0)
     pg (1.1.4)
+    polyamorous (2.3.0)
+      activerecord (>= 5.0)
     popper_js (1.14.5)
     public_suffix (4.0.1)
     puma (3.12.1)
@@ -187,6 +192,12 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (13.0.1)
+    ransack (2.3.0)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
+      polyamorous (= 2.3.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -282,10 +293,12 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   mini_racer
+  paypal-checkout-sdk
   pg
   puma (~> 3.11)
   rails (~> 6.0.0)
   rails_12factor
+  ransack
   sass-rails (~> 5)
   search_flip
   selenium-webdriver

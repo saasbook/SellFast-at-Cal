@@ -9,6 +9,13 @@ Rails.application.routes.draw do
 
   # show details for specified order
   get 'order/:id', to: 'orders#show', as: 'order'
+  get 'order/:id/buyer_confirm_delivery', to: 'orders#buyer_confirm_delivery', as: 'buyer_confirm_delivery'
+
+  # payment page
+  get 'order/:id/payment', to: 'orders#payment', as: 'payment'
+
+  # handles paypal payments
+  post 'paypal-transaction-complete', to: 'payments#payment_completed', as: 'paypal_completed'
 
   resources :items do
     resources :bids
