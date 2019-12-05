@@ -72,3 +72,4 @@ gem "image_processing", "~> 1.0"
 gem 'search_flip'
 gem 'ransack'
 gem 'paypal-checkout-sdk'
+gem "aws-sdk-s3", require: false
