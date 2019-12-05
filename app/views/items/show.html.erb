@@ -50,6 +50,14 @@
 <h4> Status: <%= @item.status %> </h4>
 <h4> Time Listed: <%= @item.time_listed %> </h4>
 
+<div class='card bg-light'> 
+  <h5 class="card-header text-white bg-info"> List of bids: </h5>
+  <div class="card-body">
+    <% for bid in @bids do %>
+        <p>  $<%= bid.amount %> </p>
+    <% end %>
+  </div>
+</div>
 
 <% if @own %>
   <%= link_to  "Edit item", edit_item_path(@item), :class=>'btn btn-primary' %>
@@ -59,16 +67,7 @@
     <%= button_to "Buy it now!", buy_it_now_path(@item), :method => "get", data: {confirm: "Are you sure you want to buy this item now?"}, :class=>'btn btn-info' %>
   <% end %>
 
-  <div class='card bg-light'> 
-    <h5 class="card-header text-white bg-info"> List of bids: </h5>
-      <div class="card-body">
-        <% for bid in @bids do %>
-            <p>  $<%= bid.amount %> </p>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="card bg-light">
+  <div class="card bg-light">
     <h5 class="card-header text-white bg-info">
       Place a Bid
     </h5>
