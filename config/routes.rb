@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :bids
   end
 
-  get 'item/:id/buy_it_now', to: 'items#buy_it_now', as: 'buy_it_now_path'
+  get 'item/:id/buy_it_now', to: 'items#buy_it_now', as: 'buy_it_now'
   post 'item/:item_id/image/:image_id/delete/', to: 'items#delete_item_image', as: 'delete_item_image'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
