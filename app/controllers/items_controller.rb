@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
       @item.save!
 
       # create worker to handle status change after 24 hours
-      ItemWorker.perform_in(1.day, @item.id)
+      ItemWorker.perform_in(24.hours, @item.id)
       # ItemWorker.perform_in(5.minutes, @item.id)
 
       flash[:info] = "Item created"
