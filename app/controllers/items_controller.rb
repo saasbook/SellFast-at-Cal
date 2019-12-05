@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :current_price, images: [])
+    params.require(:item).permit(:name, :description, :current_price, :purchase_price, images: [])
   end
 
   def index
