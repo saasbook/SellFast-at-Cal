@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 
   skip_before_action :authenticate!, :only =>[:index]
   before_action :check_ownership, :only =>[:update, :edit, :destroy]
+  before_action :check_not_owner, :only =>[:buy_it_now]
   before_action :check_payment_info_exist, :only =>[:new]
   before_action :set_search
 
@@ -10,6 +11,14 @@ class ItemsController < ApplicationController
     @item = Item.find_by_id(params[:id])
     if @item.seller_id != current_user.id
       flash[:danger] = "This item does not belong to you"
+      redirect_to item_path(@item)
+    end
+  end
+
+  def check_not_owner
+    @item = Item.find_by_id(params[:id])
+    if @item.seller_id == current_user.id
+      flash[:danger] = "This item is yours"
       redirect_to item_path(@item)
     end
   end
@@ -84,6 +93,26 @@ class ItemsController < ApplicationController
     @item.destroy
     flash[:info] = "Item '#{@item.name}' deleted."
     redirect_to items_path
+  end
+
+  def buy_it_now
+    @item = Item.find(params[:id])
+
+    # sell item immediately
+    @item.status = :SOLD
+    @item.save!
+
+    # create order
+    @order = Order.new
+		@order.item_id = @item.id
+		@order.seller_id = @item.seller_id
+		@order.buyer_id = current_user.id
+		@order.amount = item.purchase_price
+		@order.status = :ONLINE_PENDING_PAYMENT
+		@order.time_sold = DateTime.now
+    @order.save!
+    
+    redirect_to order_path(@order.id)
   end
 
   def delete_item_image
