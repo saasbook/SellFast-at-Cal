@@ -107,7 +107,7 @@ class ItemsController < ApplicationController
 		@order.item_id = @item.id
 		@order.seller_id = @item.seller_id
 		@order.buyer_id = current_user.id
-		@order.amount = item.purchase_price
+		@order.amount = @item.purchase_price
 		@order.status = :ONLINE_PENDING_PAYMENT
 		@order.time_sold = DateTime.now
     @order.save!
