@@ -43,7 +43,7 @@
 <p class="ml-5"> <%= @item.description%> </p>
 <h2> Price to Beat </h2>
 <p class="ml-5"> $<%= @item.current_price %> </p>
-<% if @item.purchase_price %>
+<% if @item.purchase_price != nil %>
   <h2> Buy it now for this price! </h2>
   <p class="ml-5"> $<%= @item.purchase_price %> </p>
 <% end %>

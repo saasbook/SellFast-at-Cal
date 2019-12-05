@@ -35,10 +35,8 @@ class ItemsController < ApplicationController
   end
 
   def index
-    
     @search = Item.where(status: :BIDDING).search(params[:q])
     @items = @search.result
-   
   end
 
   def new
