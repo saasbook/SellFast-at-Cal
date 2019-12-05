@@ -33,7 +33,7 @@ class BidsController < ApplicationController
 
 	def check_bid_lower_than_buy_it_now
 		@item = Item.find_by_id(params[:item_id])
-		if @item.purchase_price && @item.purchase_price <= params[:amount]
+		if @item.purchase_price != nil && @item.purchase_price <= params[:amount]
 			flash[:danger] = "You are bidding more than the buy it now price! Purchase it directly instead!"
 			redirect_to item_path(@item)
 		end
