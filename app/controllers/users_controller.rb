@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def user_params
-    params.require(:user).permit(:username, :avatar)
+    params.require(:user).permit(:username, :avatar, :paypal_email, :venmo_phone_number)
   end
 
 	def show
