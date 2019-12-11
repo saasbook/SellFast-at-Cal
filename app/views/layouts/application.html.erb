@@ -3,62 +3,83 @@
   <head>
   <title>Sell-Fast</title>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
   </head>
   <body>
-    <div class="container-fullwidth bg-dark">
-      <nav class="navbar navbar-expand-md navbar-dark bg-info">
-        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <%= link_to items_path, :class => 'btn btn-outline-warning' do %>
-                    <h2> Sell-Fast </h2>
-                  <% end %>
-                </li>
-            </ul>
-            
-            <!-- SEARCH FUNCTIONALITY -->
-            <div class="navbar-nav mr-auto">
-              <% @q=Item.search(params[:q]) %>
-              <%= search_form_for @q, :url=> items_path do |f| %>
+  
+    <div class="container-fullwidth">   
+      <!--Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-light light-color">
 
-                <%= f.search_field :name_or_description_cont %>
+        <!-- Navbar brand -->
+        <%= link_to items_path, :class => 'navbar-brand' do %>
+          <%= image_tag "SellFast.png", {:style => "height:60%;width:60%;"}%>
+        <% end %>
 
-                <%= f.submit "Search", :class => 'btn btn-warning' %>
-              <% end %>  
-            </div>   
 
-        </div>
-        
-        <% if user_signed_in? %>
-          <div class="mx-auto order-0">
-            <%= link_to account_path, :class => 'btn btn-info' do %>
-              <h4> Hello <%= current_user.username %> </h4>
+        <!-- Search Bar -->
+        <div class="navbar-nav py-0 search-bar">
+          <% @q=Item.search(params[:q]) %>
+          <%= search_form_for @q, :url=> items_path, :class=>"nav-search-bar form-inline md-form form-sm my-0", :autocomplete=>"off" do |f| %>
+
+            <%= f.search_field :name_or_description_cont, options = {class:"search-bar-form form-control border border-right-0 my-0 py-1", style:"width:88%;", placeholder:"  Search"} %>
+
+            <%= button_tag(type: "submit", class: "search-button border border-light bg-light", title: "Search") do %>
+              <i class="fa fa-search"></i>
             <% end %>
-          </div>  
-          <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <% end %>  
+        </div> 
+
+        <% if user_signed_in? %> 
+          <div class="navbar-collapse collapse order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <%= link_to destroy_user_session_path, :class => 'btn btn-outline-warning' do %>
-                      </h2> Log Out </h2>
-                    <% end %>
-                </li>
+              <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <% if current_user.avatar.attached? %>
+                    <%= image_tag current_user.avatar.variant(resize_to_fit: [50, 50]), class: "rounded-circle" %>
+                  <% else %>
+                    <%= image_tag "avatar_placeholder.png", {:style => "height:50px;width:50px;", :class=>"rounded-circle"} %>
+                  <% end %>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <%= link_to account_path do %>
+                    View Profile
+                  <% end %>
+                  <a class="dropdown-item" href="#">Edit Profile</a>
+                  <%= link_to destroy_user_session_path do %>
+                    Log Out
+                  <% end %>
+                </div>
+              </li>
+              <li class="nav-item">
+                  <%= link_to new_item_path, :class => 'btn btn-primary rounded-pill' do %>
+                    Sell
+                  <% end %>
+              </li>
             </ul>
           </div>
+
         <% else %>
           <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <%= link_to new_session_path(:user), :class => 'btn btn-warning' do %>
+                <%= link_to new_session_path(:user), :class => 'btn btn-link' do %>
                   </h2> Log in </h2>
                 <% end %>
               </li>
             </ul>
           </div>
         <% end %>
+          
+
       </nav>
+      <!--/.Navbar-->
     </div>
+
+    
+    
 
     <div id="flash_messages">
       <% flash.each do |key, value| %>
@@ -66,7 +87,7 @@
       <% end %>
     </div>
 
-    <div class="container">
+    <div class="container my-4">
         <%= yield %>
     </div>
   </body>
