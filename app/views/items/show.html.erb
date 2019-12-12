@@ -43,38 +43,46 @@
 <p class="ml-5"> <%= @item.description%> </p>
 <h2> Price to Beat </h2>
 <p class="ml-5"> $<%= @item.current_price %> </p>
+<% if @item.purchase_price != nil %>
+  <h2> Buy it now for this price! </h2>
+  <p class="ml-5"> $<%= @item.purchase_price %> </p>
+<% end %>
 <h4> Status: <%= @item.status %> </h4>
 <h4> Time Listed: <%= @item.time_listed %> </h4>
 
+<div class='card bg-light'> 
+  <h5 class="card-header text-white bg-info"> List of bids: </h5>
+  <div class="card-body">
+    <% for bid in @bids do %>
+        <p>  $<%= bid.amount %> </p>
+    <% end %>
+  </div>
+</div>
 
 <% if @own %>
   <%= link_to  "Edit item", edit_item_path(@item), :class=>'btn btn-primary' %>
   <%= button_to "Delete item", item_path(@item), :method => "delete", data: {confirm: "Are you sure you want to delete this item?"}, :class=>'btn btn-danger' %>
-<% end %>
+<% else %>
+  <% if @item.purchase_price %>
+    <%= button_to "Buy it now!", buy_it_now_path(@item), :method => "get", data: {confirm: "Are you sure you want to buy this item now?"}, :class=>'btn btn-info' %>
+  <% end %>
 
-<div class='card bg-light'> 
-  <h5 class="card-header text-white bg-info"> List of bids: </h5>
+  <div class="card bg-light">
+    <h5 class="card-header text-white bg-info">
+      Place a Bid
+    </h5>
     <div class="card-body">
-      <% for bid in @bids do %>
-          <p>  $<%= bid.amount %> </p>
+      <%= form_with model: Bid.new, url: item_bids_path(@item.id), method: :post do |f| %>
+
+        <div class="field">
+          <h5 class="card-title"> <%= f.label :amount, "Price:" %><br /> </h5>
+          <%= f.number_field :amount, autofocus: true, autocomplete: "Item name", step: 0.01 %>
+        </div>
+
+      <%= f.submit "Bid!"%>
+
       <% end %>
     </div>
-</div>
-
-<div class="card bg-light">
-  <h5 class="card-header text-white bg-info">
-    Place a Bid
-  </h5>
-  <div class="card-body">
-    <%= form_with model: Bid.new, url: item_bids_path(@item.id), method: :post do |f| %>
-
-      <div class="field">
-        <h5 class="card-title"> <%= f.label :amount, "Price:" %><br /> </h5>
-        <%= f.number_field :amount, autofocus: true, autocomplete: "Item name", step: 0.01 %>
-      </div>
-
-    <%= f.submit "Bid!"%>
-
-    <% end %>
   </div>
-</div>
+
+<% end %>

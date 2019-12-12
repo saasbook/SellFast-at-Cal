@@ -74,3 +74,4 @@ gem 'ransack'
 gem 'paypal-checkout-sdk'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
+gem "aws-sdk-s3", require: false

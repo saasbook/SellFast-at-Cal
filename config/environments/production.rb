@@ -36,7 +36,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -73,8 +73,8 @@ Rails.application.configure do
     address: "smtp.sendgrid.net",
     domain: "heroku.com",
     port: 25,
-    user_name: Rails.application.credentials[ENV['RAILS_ENV']][:sendgrid][:SENDGRID_USERNAME],
-    password: Rails.application.credentials[ENV['RAILS_ENV']][:sendgrid][:SENDGRID_PASSWORD],
+    user_name: ENV.fetch("SENDGRID_USERNAME"),
+    password: ENV.fetch("SENDGRID_PASSWORD"),
     authentication: 'plain',
     enable_starttls_auto: true
   }

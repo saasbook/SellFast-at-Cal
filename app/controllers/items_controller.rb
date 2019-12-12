@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 
   skip_before_action :authenticate!, :only =>[:index]
   before_action :check_ownership, :only =>[:update, :edit, :destroy]
+  before_action :check_not_owner, :only =>[:buy_it_now]
   before_action :check_payment_info_exist, :only =>[:new]
   before_action :set_search
 
@@ -14,6 +15,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def check_not_owner
+    @item = Item.find_by_id(params[:id])
+    if @item.seller_id == current_user.id
+      flash[:danger] = "This item is yours"
+      redirect_to item_path(@item)
+    end
+  end
+
   def check_payment_info_exist
     if current_user.venmo_phone_number == nil and current_user.paypal_email == nil
       flash[:danger] = "You need to set up payment method to become a seller"
@@ -22,14 +31,12 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :current_price, images: [])
+    params.require(:item).permit(:name, :description, :current_price, :purchase_price, images: [])
   end
 
   def index
-    
     @search = Item.where(status: :BIDDING).search(params[:q])
     @items = @search.result
-   
   end
 
   def new
@@ -45,8 +52,8 @@ class ItemsController < ApplicationController
       @item.save!
 
       # create worker to handle status change after 24 hours
-      # ItemWorker.perform_in(1.day, @item.id)
-      ItemWorker.perform_in(5.minutes, @item.id)
+      ItemWorker.perform_in(24.hours, @item.id)
+      # ItemWorker.perform_in(5.minutes, @item.id)
 
       flash[:info] = "Item created"
       redirect_to item_path(@item)
@@ -84,6 +91,26 @@ class ItemsController < ApplicationController
     @item.destroy
     flash[:info] = "Item '#{@item.name}' deleted."
     redirect_to items_path
+  end
+
+  def buy_it_now
+    @item = Item.find(params[:id])
+
+    # sell item immediately
+    @item.status = :SOLD
+    @item.save!
+
+    # create order
+    @order = Order.new
+		@order.item_id = @item.id
+		@order.seller_id = @item.seller_id
+		@order.buyer_id = current_user.id
+		@order.amount = @item.purchase_price
+		@order.status = :ONLINE_PENDING_PAYMENT
+		@order.time_sold = DateTime.now
+    @order.save!
+    
+    redirect_to order_path(@order.id)
   end
 
   def delete_item_image

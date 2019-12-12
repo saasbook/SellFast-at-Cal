@@ -1,11 +1,11 @@
 require 'paypal-checkout-sdk'
 
-module PayPalClient
+module PaypalClient
 	class << self
 		
 		def environment
-			client_id = "ASv3RRakkgFHKgtF7wj03AIiXz6BFoDOOPR9r1eDQYxQDm9q_QeYf3ix18rof_0k04j5RyjwVsAKXuav"
-			client_secret = "EH02lTCvZtfUAJztvDQqljn6pxiGHumftM11EkDsfL6XoHrTIGinc9idhWRpE6fP4cQuYkK2iWCifzc3"
+			client_id = ENV.fetch("PAYPAL_CLIENT_ID")
+			client_secret = ENV.fetch("PAYPAL_CLIENT_SECRET")
 
       PayPal::SandboxEnvironment.new(client_id, client_secret)
     end

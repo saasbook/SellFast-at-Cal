@@ -1,6 +1,6 @@
 class BidsController < ApplicationController
 	
-	before_action :check_not_owner, :check_item_is_bidding, :check_highest_price , only: [:create]
+	before_action :check_not_owner, :check_item_is_bidding, :check_highest_price, :check_bid_lower_than_buy_it_now , only: [:create]
 
 	def bid_params
 		params.require(:bid).permit(:amount)
@@ -31,7 +31,14 @@ class BidsController < ApplicationController
 		end
 	end
 
-	
+	def check_bid_lower_than_buy_it_now
+		@item = Item.find_by_id(params[:item_id])
+		if @item.purchase_price != nil && @item.purchase_price <= bid_params[:amount].to_f
+			flash[:danger] = "You are bidding more than the buy it now price! Purchase it directly instead!"
+			redirect_to item_path(@item)
+		end
+	end
+
 	def index
 		@bids = Bid.all
 
