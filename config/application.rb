@@ -11,6 +11,7 @@ module SellFast
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.assets.paths << Rails.root.join("app", "assets", "font", "roboto")
+    config.assets.paths << Rails.root.join("app", "vendor", "bundle", "ruby", "2.6.0", "gems")
     config.hosts << "sellfast.herokuapp.com"
 
     # Settings in config/environments/* take precedence over those specified here.
