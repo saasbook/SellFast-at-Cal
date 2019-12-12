@@ -65,3 +65,33 @@ rails s
 ```
 
 to start web server
+
+
+
+To deploy to heroku,
+
+Have heroku auto-build whatever is on your github repo's master branch, and
+You need the following addons
+1. Heroku Postgres 
+2. Heroku Redis
+3. SendGrid
+
+And define the following environment variables on heroku
+1. AWS_ACCESS_KEY_ID
+2. AWS_BUCKET
+3. AWS_REGION
+4. AWS_SECRET_ACCESS_KEY
+5. DATABASE_URL
+6. GMAIL_PASSWORD
+7. GMAIL_USERNAME
+8. LANG (en_US.UTF-8)
+9. PAYPAL_CLIENT_ID
+10. PAYPAL_CLIENT_SECRET
+11. RACK_ENV
+12. RAILS_ENV
+13. RAILS_MASTER_KEY
+14. REDIS_URL
+15. SECRET_KEY_BASE
+16. SENDGRID_API_KEY
+17. SENDGRID_PASSWORD
+18. SENDGRID_USERNAME
