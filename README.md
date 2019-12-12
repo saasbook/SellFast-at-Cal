@@ -49,12 +49,17 @@ brew services list
 bundle exec sidekiq
 ```
 
-7. precompile assets
+7. set up database
+```
+rails db:setup
+```
+
+8. precompile assets
 ```
 rake assets:precompile
 ```
 
-8. Then on another terminal, run (you might have to export the env variables again if you run it on another terminal)
+9. Then on another terminal, run (you might have to export the env variables again if you run it on another terminal)
 ```
 rails s
 ```
