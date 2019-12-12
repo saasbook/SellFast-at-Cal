@@ -10,13 +10,48 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require font-awesome
+ *= require bootstrap
+ *= require mdb
  *= require_tree .
  *= require_self
  */
 
-.nav-search {
-    display: block;
-    position: relative;
-    border-radius: 4px 4px 4px 4px;
-    width: 100%;
+ .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #4D5FE6 !important;
+}
+
+.navbar-brand {
+  width: 20%;
+  text-align: center;
+}
+
+.logo {
+  color: #4D5FE6;
+}
+
+.nav-search-bar {
+  width: 100%;
+}
+
+.search-bar {
+  width: 50%;
+}
+
+.search-bar-form {
+  width: 85%;
+  padding: 0;
+  float: left;
+}
+
+.search-button {
+  width: 10%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+
+.navbar-profile {
+  border-radius: 50%;
 }
