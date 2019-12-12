@@ -103,6 +103,7 @@ rails db:setup
 ```
 rake assets:precompile
 ```
+The precompile command should be ran everytime the heroku deployment is re-built
 
 You can run these commands on the heroku dashboard console or locally with the command
 ```
