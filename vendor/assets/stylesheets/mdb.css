@@ -2005,36 +2005,36 @@ button.bg-light:focus {
 @font-face {
     font-family: Roboto;
     font-weight: 200;
-    src: local(Roboto Thin), url(/app/assets/font/roboto/Roboto-Thin.eot);
-    src: url(/app/assets/font/roboto/Roboto-Thin.woff2) format("embedded-opentype"), url(/app/assets/font/roboto/Roboto-Thin.woff2) format("woff2"), url(/app/assets/font/roboto/Roboto-Thin.woff) format("woff"), url(/app/assets/font/roboto/Roboto-Thin.ttf) format("truetype")
+    src: local(Roboto Thin), url(/assets/Roboto-Thin.eot);
+    src: url(/assets/Roboto-Thin.woff2) format("embedded-opentype"), url(/assets/Roboto-Thin.woff2) format("woff2"), url(/assets/Roboto-Thin.woff) format("woff"), url(/assets/Roboto-Thin.ttf) format("truetype")
 }
 
 @font-face {
     font-family: Roboto;
     font-weight: 300;
-    src: local(Roboto Light), url(/app/assets/font/roboto/Roboto-Light.eot);
-    src: url(/app/assets/font/roboto/Roboto-Light.eot?#iefix) format("embedded-opentype"), url(/app/assets/font/roboto/Roboto-Light.woff2) format("woff2"), url(/app/assets/font/roboto/Roboto-Light.woff) format("woff"), url(/app/assets/font/roboto/Roboto-Light.ttf) format("truetype")
+    src: local(Roboto Light), url(/assets/Roboto-Light.eot);
+    src: url(/assets/Roboto-Light.eot?#iefix) format("embedded-opentype"), url(/assets/Roboto-Light.woff2) format("woff2"), url(/app/assets/font/roboto/Roboto-Light.woff) format("woff"), url(/assets/Roboto-Light.ttf) format("truetype")
 }
 
 @font-face {
     font-family: Roboto;
     font-weight: 400;
-    src: local(Roboto Regular), url(/app/assets/font/roboto/roboto/Roboto-Regular.eot);
-    src: url(/app/assets/font/roboto/Roboto-Regular.eot?#iefix) format("embedded-opentype"), url(/app/assets/font/roboto/Roboto-Regular.woff2) format("woff2"), url(assets/Roboto-Regular.woff) format("woff"), url(/app/assets/font/roboto/Roboto-Regular.ttf) format("truetype")
+    src: local(Roboto Regular), url(/assets/Roboto-Regular.eot);
+    src: url(/assets/Roboto-Regular.eot?#iefix) format("embedded-opentype"), url(/assets/Roboto-Regular.woff2) format("woff2"), url(/assets/Roboto-Regular.woff) format("woff"), url(/assets/Roboto-Regular.ttf) format("truetype")
 }
 
 @font-face {
     font-family: Roboto;
     font-weight: 500;
-    src: url(/app/assets/font/roboto/Roboto-Medium.eot);
-    src: url(/app/assets/font/roboto/Roboto-Medium.eot?#iefix) format("embedded-opentype"), url(/app/assets/font/roboto/Roboto-Medium.woff2) format("woff2"), url(assets/Roboto-Medium.woff) format("woff"), url(/app/assets/font/roboto/Roboto-Medium.ttf) format("truetype")
+    src: url(/assets/Roboto-Medium.eot);
+    src: url(/assets/Roboto-Medium.eot?#iefix) format("embedded-opentype"), url(/assets/Roboto-Medium.woff2) format("woff2"), url(/assets/Roboto-Medium.woff) format("woff"), url(/assets/Roboto-Medium.ttf) format("truetype")
 }
 
 @font-face {
     font-family: Roboto;
     font-weight: 700;
-    src: url(/app/assets/font/roboto/Roboto-Bold.eot);
-    src: url(/app/assets/font/roboto/Roboto-Bold.eot?#iefix) format("embedded-opentype"), url(/app/assets/font/roboto/Roboto-Bold.woff2) format("woff2"), url(assets/Roboto-Bold.woff) format("woff"), url(/app/assets/font/roboto/Roboto-Bold.ttf) format("truetype")
+    src: url(/assets/Roboto-Bold.eot);
+    src: url(/assets/Roboto-Bold.eot?#iefix) format("embedded-opentype"), url(/assets/roboto/Roboto-Bold.woff2) format("woff2"), url(/assets/Roboto-Bold.woff) format("woff"), url(/assets/Roboto-Bold.ttf) format("truetype")
 }
 
 body {
