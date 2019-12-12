@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates_format_of :email, :with => /@.*\.edu\z/,
     :message => "not valid, only .edu emails allowed"
 
+  validates :username, uniqueness: true
+
   has_one_attached :avatar
 
   has_many :bids, :foreign_key => 'bidder', dependent: :destroy

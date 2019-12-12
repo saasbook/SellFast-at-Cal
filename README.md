@@ -100,12 +100,8 @@ Finally, run the following commands on heroku to setup database and assets
 ```
 rails db:setup
 ```
-```
-rake assets:precompile
-```
-The precompile command should be ran everytime the heroku deployment is re-built
 
-You can run these commands on the heroku dashboard console or locally with the command
+You can run the command on the heroku dashboard console or locally with the command
 ```
 heroku run [COMMAND] -a [APP NAME]
 ```
