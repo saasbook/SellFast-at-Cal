@@ -95,3 +95,16 @@ And define the following environment variables on heroku
 16. SENDGRID_API_KEY
 17. SENDGRID_PASSWORD
 18. SENDGRID_USERNAME
+
+Finally, run the following commands on heroku to setup database and assets
+```
+rails db:setup
+```
+```
+rake assets:precompile
+```
+
+You can run these commands on the heroku dashboard console or locally with the command
+```
+heroku run [COMMAND] -a [APP NAME]
+```
