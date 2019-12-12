@@ -17,7 +17,7 @@
  *= require_self
  */
 
- .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
   background-color: #4D5FE6 !important;
 }
 
