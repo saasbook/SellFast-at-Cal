@@ -1,6 +1,7 @@
 //= require jquery
 //= require popper.min
 //= require bootstrap
+//= require bootstrap-sprockets
 //= require mdb
 //= require rails-ujs
 //= require activestorage
