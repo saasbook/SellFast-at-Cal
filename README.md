@@ -1,6 +1,6 @@
 # SellFast-at-Cal
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6fa6f80db0f65a491e12/maintainability)](https://codeclimate.com/github/EricLui-409/SellFast-at-Cal/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6fa6f80db0f65a491e12/test_coverage)](https://codeclimate.com/github/EricLui-409/SellFast-at-Cal/test_coverage)
 
 To run development server locally, follow these steps:
 
