@@ -1,0 +1,12 @@
+<h2>Enter Your Bidding price</h2>
+
+<%=  @bid, url: item_bids_path(@item.id), html: { method: :post } do |f| %>
+
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.number_field :amount %>
+  </div>
+
+  <%= f.submit "Create"%>
+
+<% end %>

@@ -1,0 +1,26 @@
+<h1> Marketplace </h1>
+<div class="item_bar">
+  
+  <span> <%= link_to 'Add new item', new_item_path %> </span>
+
+  <span>
+    <%= sort_link @search, :current_price, "Price", :class=>'btn' %>
+  </span>
+</div>
+
+<% @items.in_groups_of(4, false).each do |group| %>
+  <div class='row'>
+    <% group.each do |item| %>
+      <div class='col-md-3'>
+        <% if item.images.attached? %>
+          <%= image_tag item.images.first.variant(resize_to_fill: [250, 250]) %>
+        <% else %>
+          <%= image_tag "item_placeholder.png", {:style => "height:250px;width:250px;"} %>
+        <% end %>
+        <h3><%= link_to item.name, item_path(item), :class=>'btn btn-info' %></h3>
+        <div><%= item.description %></div>
+        <div><%= number_to_currency(item.current_price) %></div> 
+      </div>
+    <% end %>
+  </div>
+<% end %>

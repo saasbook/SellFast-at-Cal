@@ -1,0 +1,35 @@
+<h2 class="text-center"> Profile Information </h2>
+<% if current_user.avatar.attached? %>
+  <%= image_tag current_user.avatar.variant(resize_to_fit: [400, 400]), class: "mx-auto d-block" %>
+<% else %>
+  <%= image_tag "avatar_placeholder.png", {:style => "height:400px;width:400px;", :class=>"mx-auto d-block"} %>
+<% end %>
+
+<p> Username: <%= @user.username %> </p>
+<p> Email address: <%= @user.email%> </p>
+
+<%= link_to  "Edit profile", edit_account_path(current_user), :class=>'btn btn-primary' %>
+
+<p> List of bids: 
+  <% for bid in @bids do %>
+    <p> - <%= bid.item.name %> </p>
+  <% end %>
+</p>
+
+<p> Items being sold:
+  <% for item in @items do %>
+    <p> - <%= link_to item.name, item_path(item) %> </p>
+  <% end %>
+</p>
+
+<p> Buy orders: 
+  <% for buy_order in @buy_orders do %>
+    <p> - <%= link_to Item.find_by_id(buy_order.item_id).name, order_path(buy_order) %> </p>
+  <% end %>
+</p>
+
+<p> Sell orders: 
+  <% for sell_order in @sell_orders do %>
+    <p> - <%= link_to Item.find_by_id(sell_order.item_id).name, order_path(sell_order) %> </p>
+  <% end %>
+</p>

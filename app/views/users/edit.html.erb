@@ -1,0 +1,22 @@
+<h2 class="text-center"> Edit Profile </h2>
+
+<%= form_with model: current_user, class: 'user_edit_form', html: { method: :post } do |f| %>
+
+  <div class="field">
+		<%= f.label "Change Username" %>
+		<%= f.text_field :username %>
+
+		<%= f.label "Profile Photo" %>
+		<%= f.file_field :avatar %>
+
+		Payment methods:
+		<%= f.label "Paypal account email" %>
+		<%= f.text_field :paypal_email %>
+		or
+		<%= f.label "Venmo phone number" %>
+		<%= f.number_field :venmo_phone_number %>
+	</div>
+
+  <%= f.submit "Update profile" %>
+  
+<% end %>

@@ -1,0 +1,24 @@
+<h2>Edit item <%= @item.name %></h2>
+
+<%= form_with(model: @item, class: 'item_edit_form') do |f| %>
+  
+<% if @item.images.attached? %>
+  <% for image in @item.images do %>
+    <%= image_tag image.variant(resize_to_fit: [300, 300]), class: "mx-auto d-block" %>
+    <%= link_to 'Remove image', delete_item_image_path(@item.id, image.signed_id, authenticity_token: form_authenticity_token), method: :post, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+<% end %>
+
+  <div class="field">
+		<%= f.label "Add item photo" %>
+		<%= f.file_field :images, multiple: true %>
+	</div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description, :size => "150", autocomplete: @item.description %>
+  </div>
+
+  <%= f.submit "Update item" %>
+
+<% end %>

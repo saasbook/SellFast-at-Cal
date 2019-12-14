@@ -1,0 +1,28 @@
+<h2>Create new item</h2>
+
+<%= form_with(model: @item, class: 'item_creation_form') do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "Item name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description, :size => "150", autocomplete: "Description for the item" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :selling_price %><br />
+    <%= f.number_field :current_price, autocomplete: "Sell price" %>
+  </div>
+
+  Optional:
+  <div class="field">
+    <%= f.label :buy_it_now_price %><br />
+    <%= f.number_field :purchase_price, autocomplete: "Buy it now price" %>
+  </div>
+
+  <%= f.submit "Create" %>
+
+<% end %>
